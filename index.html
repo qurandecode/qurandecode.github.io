@@ -2,92 +2,100 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quran Decode</title>
-  <!-- Link ke file CSS eksternal jika diperlukan -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quran Decode - Coming Soon</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    /* Reset dan font dasar */
+    * {
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
+      box-sizing: border-box;
     }
-    header {
-      background-color: #2c3e50;
-      color: #ecf0f1;
-      padding: 20px;
-      text-align: center;
-    }
-    .container {
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #6a0dad, #a4508b);
+      color: #ffffff;
+      height: 100vh;
       display: flex;
-      flex-direction: row;
-      padding: 20px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
     }
-    .content {
-      flex: 2;
-      padding: 10px;
-      background-color: #ffffff;
-      margin-right: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    /* Judul dengan animasi fade-in dan scale */
+    h1 {
+      font-size: 4em;
+      margin-bottom: 0.5em;
+      animation: fadeInScale 1.5s ease-out forwards;
+      opacity: 0;
     }
-    .sidebar {
-      flex: 1;
-      padding: 10px;
-      background-color: #ffffff;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
-    .word {
-      display: inline-block;
-      padding: 5px;
-      margin: 2px;
-      cursor: pointer;
-      border-radius: 3px;
-      transition: background-color 0.3s;
+    /* Paragraf dengan animasi slide up */
+    p {
+      font-size: 1.5em;
+      opacity: 0;
+      animation: slideUp 1.5s ease-out forwards;
+      animation-delay: 0.8s;
     }
-    .word:hover {
-      background-color: #ecf0f1;
+    @keyframes slideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Footer kecil untuk keterangan */
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+    /* Tambahan efek animasi background partikel sederhana */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      animation: drift 10s infinite linear;
+    }
+    @keyframes drift {
+      from {
+        transform: translate(0, 0);
+      }
+      to {
+        transform: translate(100px, -100px);
+      }
     }
   </style>
 </head>
 <body>
-  <header>
+  <!-- Elemen partikel untuk animasi background -->
+  <div class="particle" style="width: 8px; height: 8px; top: 10%; left: 20%; animation-duration: 12s;"></div>
+  <div class="particle" style="width: 12px; height: 12px; top: 50%; left: 80%; animation-duration: 8s;"></div>
+  <div class="particle" style="width: 6px; height: 6px; top: 70%; left: 30%; animation-duration: 15s;"></div>
+  <div class="particle" style="width: 10px; height: 10px; top: 25%; left: 60%; animation-duration: 10s;"></div>
+  
+  <!-- Konten utama halaman -->
+  <div class="content">
     <h1>Quran Decode</h1>
-    <p>Mengungkap tafsir melalui dekomposisi per kata</p>
-  </header>
-
-  <div class="container">
-    <div class="content">
-      <!-- Area untuk menampilkan ayat dan dekomposisi kata -->
-      <h2>Contoh Ayat</h2>
-      <p>
-        <span class="word" data-root="ر ح م" data-meaning="Maha Pengasih" data-tafsir="Menunjukkan sifat kasih sayang Allah terhadap seluruh makhluk.">الرَّحْمَٰنِ</span>
-        <span class="word" data-root="ر ح م" data-meaning="Maha Penyayang" data-tafsir="Menguatkan gambaran kasih sayang Allah.">الرَّحِيمِ</span>
-      </p>
-      <p>Klik pada tiap kata untuk melihat detail tafsir dan informasi morfologis.</p>
-    </div>
-    <div class="sidebar" id="sidebar">
-      <!-- Sidebar untuk menampilkan detail tafsir kata -->
-      <h3>Detail Kata</h3>
-      <p id="detail">Klik pada kata untuk melihat detail tafsir.</p>
-    </div>
+    <p>Coming Soon</p>
   </div>
-
-  <script>
-    // JavaScript sederhana untuk menampilkan detail kata ketika di-klik
-    document.querySelectorAll('.word').forEach(function(wordElement) {
-      wordElement.addEventListener('click', function() {
-        const root = this.getAttribute('data-root');
-        const meaning = this.getAttribute('data-meaning');
-        const tafsir = this.getAttribute('data-tafsir');
-        
-        document.getElementById('detail').innerHTML =
-          `<strong>Root:</strong> ${root} <br>
-          <strong>Arti:</strong> ${meaning} <br>
-          <strong>Tafsir:</strong> ${tafsir}`;
-      });
-    });
-  </script>
+  
+  <div class="footer">
+    <p>&copy; 2025 Quran Decode. All rights reserved.</p>
+  </div>
 </body>
 </html>
