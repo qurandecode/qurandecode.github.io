@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quran Decode</title>
+  <!-- Link ke file CSS eksternal jika diperlukan -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      padding: 20px;
+    }
+    .content {
+      flex: 2;
+      padding: 10px;
+      background-color: #ffffff;
+      margin-right: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .sidebar {
+      flex: 1;
+      padding: 10px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .word {
+      display: inline-block;
+      padding: 5px;
+      margin: 2px;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background-color 0.3s;
+    }
+    .word:hover {
+      background-color: #ecf0f1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Quran Decode</h1>
+    <p>Mengungkap tafsir melalui dekomposisi per kata</p>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <!-- Area untuk menampilkan ayat dan dekomposisi kata -->
+      <h2>Contoh Ayat</h2>
+      <p>
+        <span class="word" data-root="ر ح م" data-meaning="Maha Pengasih" data-tafsir="Menunjukkan sifat kasih sayang Allah terhadap seluruh makhluk.">الرَّحْمَٰنِ</span>
+        <span class="word" data-root="ر ح م" data-meaning="Maha Penyayang" data-tafsir="Menguatkan gambaran kasih sayang Allah.">الرَّحِيمِ</span>
+      </p>
+      <p>Klik pada tiap kata untuk melihat detail tafsir dan informasi morfologis.</p>
+    </div>
+    <div class="sidebar" id="sidebar">
+      <!-- Sidebar untuk menampilkan detail tafsir kata -->
+      <h3>Detail Kata</h3>
+      <p id="detail">Klik pada kata untuk melihat detail tafsir.</p>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript sederhana untuk menampilkan detail kata ketika di-klik
+    document.querySelectorAll('.word').forEach(function(wordElement) {
+      wordElement.addEventListener('click', function() {
+        const root = this.getAttribute('data-root');
+        const meaning = this.getAttribute('data-meaning');
+        const tafsir = this.getAttribute('data-tafsir');
+        
+        document.getElementById('detail').innerHTML =
+          `<strong>Root:</strong> ${root} <br>
+          <strong>Arti:</strong> ${meaning} <br>
+          <strong>Tafsir:</strong> ${tafsir}`;
+      });
+    });
+  </script>
+</body>
+</html>
