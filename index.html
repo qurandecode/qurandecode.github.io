@@ -1,35 +1,95 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quran Decode - Coming Soon</title>
   <style>
-    /* Reset dan font dasar */
+    /* Reset dasar */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+    /* Styling body dengan tema ungu */
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #6a0dad, #a4508b);
-      color: #ffffff;
+      color: #fff;
       height: 100vh;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      overflow: hidden;
+      position: relative;
     }
-    /* Judul dengan animasi fade-in dan scale */
+    /* Konten utama */
+    .content {
+      z-index: 1;
+    }
     h1 {
       font-size: 4em;
-      margin-bottom: 0.5em;
+      margin-bottom: 0.3em;
       animation: fadeInScale 1.5s ease-out forwards;
       opacity: 0;
     }
+    p {
+      font-size: 1.5em;
+      margin-bottom: 1.2em;
+      animation: slideUp 1.5s ease-out forwards;
+      animation-delay: 0.8s;
+      opacity: 0;
+    }
+    /* Tombol Quran Button */
+    .quran-button, .option-button {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border: 2px solid #fff;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-bottom: 1em;
+    }
+    .quran-button:hover, .option-button:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+    /* Container untuk tombol opsi */
+    #more-buttons {
+      margin-top: 20px;
+      display: none;
+      animation: fadeIn 1s ease-out forwards;
+    }
+    /* Container untuk daftar surah Makkiyah */
+    #makkiyah-content {
+      margin-top: 20px;
+      display: none;
+      animation: fadeIn 1s ease-out forwards;
+      max-height: 60vh;
+      overflow-y: auto;
+      text-align: left;
+      padding: 0 20px;
+    }
+    #makkiyah-content ul {
+      list-style: none;
+      padding: 0;
+    }
+    #makkiyah-content li {
+      font-size: 1.2em;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+    /* Animasi */
     @keyframes fadeInScale {
       0% {
         opacity: 0;
@@ -39,13 +99,6 @@
         opacity: 1;
         transform: scale(1);
       }
-    }
-    /* Paragraf dengan animasi slide up */
-    p {
-      font-size: 1.5em;
-      opacity: 0;
-      animation: slideUp 1.5s ease-out forwards;
-      animation-delay: 0.8s;
     }
     @keyframes slideUp {
       0% {
@@ -57,14 +110,15 @@
         transform: translateY(0);
       }
     }
-    /* Footer kecil untuk keterangan */
-    .footer {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.9em;
-      opacity: 0.8;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
-    /* Tambahan efek animasi background partikel sederhana */
+    /* Partikel latar belakang untuk estetika tambahan */
     .particle {
       position: absolute;
       border-radius: 50%;
@@ -82,20 +136,80 @@
   </style>
 </head>
 <body>
-  <!-- Elemen partikel untuk animasi background -->
+  <!-- Efek partikel sederhana -->
   <div class="particle" style="width: 8px; height: 8px; top: 10%; left: 20%; animation-duration: 12s;"></div>
   <div class="particle" style="width: 12px; height: 12px; top: 50%; left: 80%; animation-duration: 8s;"></div>
   <div class="particle" style="width: 6px; height: 6px; top: 70%; left: 30%; animation-duration: 15s;"></div>
   <div class="particle" style="width: 10px; height: 10px; top: 25%; left: 60%; animation-duration: 10s;"></div>
   
-  <!-- Konten utama halaman -->
+  <!-- Konten Utama -->
   <div class="content">
     <h1>Quran Decode</h1>
     <p>Coming Soon</p>
+    
+    <!-- Tombol Quran Button (tampil saat awal) -->
+    <button class="quran-button" id="quranBtn">Quran Button</button>
+    
+    <!-- Container tombol opsi (Makkiyah & Madaniyah) -->
+    <div id="more-buttons">
+      <button class="option-button" id="makkiyahBtn">Makkiyah</button>
+      <button class="option-button" id="madaniyahBtn">Madaniyah</button>
+    </div>
+    
+    <!-- Container daftar surah Makkiyah -->
+    <div id="makkiyah-content">
+      <h2>Daftar Surah Makkiyah</h2>
+      <ul>
+        <li>Surah Al-'Alaq (96)</li>
+        <li>Surah Al-Qadr (97)</li>
+        <li>Surah Al-Bayyina (98)</li>
+        <li>Surah Az-Zalzalah (99)</li>
+        <li>Surah Al-'Adiyat (100)</li>
+        <li>Surah Al-Qari'ah (101)</li>
+        <li>Surah At-Takathur (102)</li>
+        <li>Surah Al-Asr (103)</li>
+        <li>Surah Al-Humazah (104)</li>
+        <li>Surah Al-Fil (105)</li>
+        <li>Surah Quraysh (106)</li>
+        <li>Surah Al-Ma'un (107)</li>
+        <li>Surah Al-Kawthar (108)</li>
+        <li>Surah Al-Kafirun (109)</li>
+        <li>Surah An-Nasr (110)</li>
+        <li>Surah Al-Masad (111)</li>
+        <li>Surah Al-Ikhlas (112)</li>
+        <li>Surah Al-Falaq (113)</li>
+        <li>Surah An-Nas (114)</li>
+      </ul>
+    </div>
   </div>
   
+  <!-- Footer -->
   <div class="footer">
     <p>&copy; 2025 Quran Decode. All rights reserved.</p>
   </div>
+  
+  <!-- JavaScript untuk interaksi tombol -->
+  <script>
+    const quranBtn = document.getElementById('quranBtn');
+    const moreButtons = document.getElementById('more-buttons');
+    const makkiyahBtn = document.getElementById('makkiyahBtn');
+    const makkiyahContent = document.getElementById('makkiyah-content');
+    
+    // Saat tombol Quran Button diklik:
+    quranBtn.addEventListener('click', () => {
+      // Hilangkan Quran Button
+      quranBtn.style.display = 'none';
+      // Tampilkan tombol opsi Makkiyah dan Madaniyah
+      moreButtons.style.display = 'block';
+    });
+    
+    // Saat tombol Makkiyah diklik:
+    makkiyahBtn.addEventListener('click', () => {
+      // Hilangkan tombol opsi
+      moreButtons.style.display = 'none';
+      // Tampilkan daftar surah Makkiyah
+      makkiyahContent.style.display = 'block';
+    });
+  </script>
 </body>
 </html>
